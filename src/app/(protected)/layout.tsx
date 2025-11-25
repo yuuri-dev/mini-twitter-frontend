@@ -5,9 +5,9 @@ import React from 'react';
 
 const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
-    <div>
+    <div className="h-screen">
       <Header />
-      <div className='flex'>
+      <div className="flex h-screen">
         <Sidebar />
         {children}
       </div>
