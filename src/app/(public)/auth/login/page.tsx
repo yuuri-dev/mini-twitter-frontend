@@ -21,7 +21,7 @@ const LoginPage = () => {
       const { accessToken } = res.data;
       localStorage.setItem('token', accessToken);
 
-      router.push('/dashboard/home');
+      router.push('/home');
     } catch (err) {
       alert('ログイン失敗');
       console.error(err);
