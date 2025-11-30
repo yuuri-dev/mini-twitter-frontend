@@ -9,6 +9,7 @@ const Top = () => {
     <div>
       <p>topページです</p>
       <Button onClick={() => router.push('/auth/login')}>ログイン</Button>
+      <Button onClick={() => router.push('/auth/signup')}>新規登録</Button>
     </div>
   );
 };
