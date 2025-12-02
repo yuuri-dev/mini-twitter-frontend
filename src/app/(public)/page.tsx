@@ -23,14 +23,14 @@ const Top = () => {
             今すぐ参加しましょう。
           </h2>
           <p className="text-xl font-midium mt-12">新規登録はこちらから</p>
-          <Button onClick={() => router.push('/auth/signup')}>
+          <Button className='my-3' onClick={() => router.push('/auth/signup')}>
             アカウントを作成
           </Button>
           <p className="font-thin text-xs w-80 my-3">
             アカウントを登録することにより、利用規約とプライバシーポリシー（Cookieの使用を含む）に同意したとみなされます。
           </p>
           <p className="text-xl font-midium mt-12">アカウントをお持ちの方</p>
-          <Button onClick={() => router.push('/auth/login')}>ログイン</Button>
+          <Button className='my-3' onClick={() => router.push('/auth/login')}>ログイン</Button>
         </div>
       </div>
     </div>
