@@ -32,7 +32,7 @@ const SignUpPage = () => {
 
   return (
     <div className="max-w-[600px] m-auto my-10 px-10">
-      <h1 className="text-center mb-3 text-3xl text-bold">ログイン</h1>
+      <h1 className="text-center mb-3 text-3xl text-bold">アカウントを作成</h1>
 
       <form className="space-y-4" onSubmit={handleLogin}>
         <Input
