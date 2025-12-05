@@ -1,13 +1,13 @@
 'use client';
 import { api } from '@/lib/api';
 import React, { useEffect, useState } from 'react';
+import { formatRelativeTime } from '@/lib/utils';
 
 type myTweets = {
   id: number;
-  contents: string;
+  content: string;
   createdAt: string;
 };
-
 const Me = () => {
   const [userName, setUserName] = useState('');
   const [userTweets, setUserTweets] = useState([]);
@@ -27,12 +27,15 @@ const Me = () => {
       <p>メールアドレス</p>
       <p>{userName}</p>
 
-      <p>過去のツイート</p>
+      <h2 className="text-2xl">過去のツイート</h2>
 
       {userTweets &&
         userTweets.map((tweet: myTweets) => (
           <div key={tweet.id}>
-            <p>{tweet.contents}</p>
+            <p>{tweet.content}</p>
+            <p className="text-gray-500 text-sm">
+              {formatRelativeTime(tweet.createdAt)}
+            </p>
           </div>
         ))}
     </div>
