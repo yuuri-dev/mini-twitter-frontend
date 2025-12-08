@@ -16,9 +16,7 @@ const SignUpPage = () => {
 
     try {
       const res = await api.post('/users/signup', {
-        userName,
-        email,
-        password,
+        token:String
       });
       const { accessToken } = res.data;
       localStorage.setItem('token', accessToken);
