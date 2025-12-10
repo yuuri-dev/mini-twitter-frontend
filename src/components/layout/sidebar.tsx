@@ -3,15 +3,20 @@ import React from 'react';
 import { Button } from '../ui/button';
 import { usePathname, useRouter } from 'next/navigation';
 
-const Sidebar = () => {
+const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
   const router = useRouter();
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const menuItems = [
     { label: 'ホーム', path: '/home' },
     { label: '投稿', path: '/tweets/new' },
     { label: 'プロフィール', path: '/profile/me' },
   ];
+
+  const handleMove = (path: string) => {
+    router.push(path);
+    onToggleSidebar();
+  };
 
   return (
     <div className="w-64 pt-10 border-r bg-white min-h-screen px-4">
@@ -30,7 +35,7 @@ const Sidebar = () => {
                   : 'text-gray-700'
               }
             `}
-            onClick={() => router.push(item.path)}
+            onClick={() => handleMove(item.path)}
           >
             {item.label}
           </Button>
