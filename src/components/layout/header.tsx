@@ -13,9 +13,9 @@ const Header = ({ onToggleSidebar }: Props) => {
           onClick={onToggleSidebar}
         >
           {/* シンプルな3本線の例 */}
-          <span className="block w-6 h-0.5 bg-black mb-1" />
-          <span className="block w-6 h-0.5 bg-black mb-1" />
-          <span className="block w-6 h-0.5 bg-black" />
+          <span className="block w-6 h-0.5 bg-white mb-1" />
+          <span className="block w-6 h-0.5 bg-white mb-1" />
+          <span className="block w-6 h-0.5 bg-white" />
         </button>
       )}
       <h1 className="text-xl text-white">Twitter</h1>
