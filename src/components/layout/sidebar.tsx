@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '../ui/button';
 import { usePathname, useRouter } from 'next/navigation';
+import { X } from 'lucide-react';
 
 const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
   const router = useRouter();
@@ -19,15 +20,24 @@ const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
   };
 
   return (
-    <div className="w-64 pt-10 border-r bg-white min-h-screen px-4">
+    <div className="relative sm:w-64 w-40 pt-10 border-r bg-white min-h-screen px-4">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute left-2 top-2 md:hidden" // PCで消したければ md:hidden
+        onClick={onToggleSidebar}
+      >
+        <X className="w-4 h-4" />
+        <span className="sr-only">閉じる</span>
+      </Button>
       {menuItems.map((item) => {
         const isActive = pathname.startsWith(item.path);
-
         return (
-          <Button
-            key={item.path}
-            variant="ghost"
-            className={`
+          <>
+            <Button
+              key={item.path}
+              variant="ghost"
+              className={`
               w-full justify-start my-2 px-4 py-3 text-left
               ${
                 isActive
@@ -35,10 +45,11 @@ const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
                   : 'text-gray-700'
               }
             `}
-            onClick={() => handleMove(item.path)}
-          >
-            {item.label}
-          </Button>
+              onClick={() => handleMove(item.path)}
+            >
+              {item.label}
+            </Button>
+          </>
         );
       })}
     </div>
