@@ -33,9 +33,8 @@ const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
       {menuItems.map((item) => {
         const isActive = pathname.startsWith(item.path);
         return (
-          <>
+          <div key={item.path}>
             <Button
-              key={item.path}
               variant="ghost"
               className={`
               w-full justify-start my-2 px-4 py-3 text-left
@@ -49,7 +48,7 @@ const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
             >
               {item.label}
             </Button>
-          </>
+          </div>
         );
       })}
     </div>
