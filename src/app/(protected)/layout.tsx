@@ -7,21 +7,25 @@ import React, { useState } from 'react';
 const Layout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+  const closeSidebar = () => setIsSidebarOpen(false);
 
   return (
     <div className="min-h-screen relative flex flex-col">
       <Header onToggleSidebar={toggleSidebar} />
 
-      <main className="flex-1 relative">
+      <main className="md:flex flex-1 relative">
+        <div className="md:block hidden w-64">
+          <Sidebar onCloseSidebar={closeSidebar} />
+        </div>
         {isSidebarOpen && (
           <>
             <div
               className="fixed inset-0 bg-black/50 z-40"
-              onClick={toggleSidebar}
+              onClick={closeSidebar}
             />
 
             <div className="fixed inset-y-0 left-0 z-50 w-64">
-              <Sidebar onToggleSidebar={toggleSidebar} />
+              <Sidebar onCloseSidebar={closeSidebar} />
             </div>
           </>
         )}

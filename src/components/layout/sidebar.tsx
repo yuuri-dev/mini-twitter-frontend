@@ -4,7 +4,7 @@ import { Button } from '../ui/button';
 import { usePathname, useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
 
-const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
+const Sidebar = ({ onCloseSidebar }: { onCloseSidebar: () => void }) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -16,7 +16,7 @@ const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
 
   const handleMove = (path: string) => {
     router.push(path);
-    onToggleSidebar();
+    onCloseSidebar();
   };
 
   return (
@@ -24,8 +24,8 @@ const Sidebar = ({ onToggleSidebar }: { onToggleSidebar: () => void }) => {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-2 top-2 md:hidden" // PCで消したければ md:hidden
-        onClick={onToggleSidebar}
+        className="absolute left-2 top-2 md:hidden"
+        onClick={onCloseSidebar}
       >
         <X className="w-4 h-4" />
         <span className="sr-only">閉じる</span>
