@@ -64,8 +64,10 @@ const SignUpPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="text-center">
-            <Button type="submit">{isLoading ? '登録中' : '登録'}{isLoading && <Spinner />}</Button>
-            
+            <Button type="submit">
+              {isLoading ? '登録中' : '登録'}
+              {isLoading && <Spinner />}
+            </Button>
           </div>
         </form>
       </div>
