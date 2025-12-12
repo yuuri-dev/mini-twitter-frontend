@@ -2,6 +2,7 @@
 import Header from '@/components/layout/header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -10,11 +11,13 @@ const LoginPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       const res = await api.post('/auth/login', {
         email,
         password,
@@ -26,6 +29,8 @@ const LoginPage = () => {
     } catch (err) {
       alert('ログイン失敗');
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -33,7 +38,9 @@ const LoginPage = () => {
     <>
       <Header />
       <div className="max-w-[600px] m-auto my-10 px-10">
-        <h1 className="text-center mb-3 sm:text-3xl text-2xl text-bold">ログイン</h1>
+        <h1 className="text-center mb-3 sm:text-3xl text-2xl text-bold">
+          ログイン
+        </h1>
 
         <form className="space-y-4" onSubmit={handleLogin}>
           <Input
@@ -49,7 +56,10 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="text-center">
-            <Button type="submit">ログイン</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? 'ログイン中' : 'ログイン'}
+              {isLoading && <Spinner />}
+            </Button>
           </div>
         </form>
       </div>

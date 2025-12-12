@@ -2,6 +2,7 @@
 import Header from '@/components/layout/header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Spinner } from '@/components/ui/spinner';
 import { api } from '@/lib/api';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -11,11 +12,13 @@ const SignUpPage = () => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       const res = await api.post('/users/signup', {
         userName,
         email,
@@ -28,6 +31,8 @@ const SignUpPage = () => {
     } catch (err) {
       alert('サインアップ失敗');
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -39,7 +44,7 @@ const SignUpPage = () => {
           アカウントを作成
         </h1>
 
-        <form className="space-y-4" onSubmit={handleLogin}>
+        <form className="space-y-4" onSubmit={handleSignup}>
           <Input
             type="text"
             placeholder="ユーザー名"
@@ -59,7 +64,8 @@ const SignUpPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className="text-center">
-            <Button type="submit">登録</Button>
+            <Button type="submit">{isLoading ? '登録中' : '登録'}{isLoading && <Spinner />}</Button>
+            
           </div>
         </form>
       </div>
