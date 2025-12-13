@@ -2,6 +2,7 @@
 import { api } from '@/lib/api';
 import React, { useEffect, useState } from 'react';
 import { formatRelativeTime } from '@/lib/utils';
+import { Spinner } from '@/components/ui/spinner';
 
 type MyTweet = {
   id: number;
@@ -33,7 +34,12 @@ const Me = () => {
     fetchData();
   }, []);
 
-  if (!user) return <p>Loading...</p>;
+  if (!user)
+    return (
+      <div className='w-full flex justify-center items-center'>
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className="w-full m-10">
