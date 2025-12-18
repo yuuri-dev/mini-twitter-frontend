@@ -1,4 +1,5 @@
 import { api } from '@/lib/api';
+import { formatRelativeTime } from '@/lib/utils';
 import { Heart } from 'lucide-react';
 import React, { useState } from 'react';
 
@@ -31,7 +32,7 @@ const Tweet = ({ data }: any) => {
       <div className="flex items-center gap-3">
         <img src="user_icon.jpeg" alt="icon" className="w-10" />
         <p className="font-bold text-lg">{data.user.userName}</p>
-        <p className="text-sm">{data.createdAt.split('T')[0]}</p>
+        <p className="text-sm">{formatRelativeTime(data.createdAt)}</p>
       </div>
       <p className="ml-10">{data.content}</p>
       <div className="flex">
