@@ -85,7 +85,11 @@ export default function Me() {
             type="file"
             accept="image/*"
             className="hidden"
-            onChange={handleUpload}
+            onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                setFile(e.target.files[0]);
+              }
+            }}
           />
         </label>
 
