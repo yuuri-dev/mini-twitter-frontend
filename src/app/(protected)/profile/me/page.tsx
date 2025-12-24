@@ -55,6 +55,7 @@ export default function Me() {
       setLoading(false);
     }
   };
+  
 
   if (!user)
     return (
@@ -86,9 +87,25 @@ export default function Me() {
             accept="image/*"
             className="hidden"
             onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                setFile(e.target.files[0]);
+              if (!e.target.files || !e.target.files[0]) return;
+
+              const selectedFile = e.target.files[0];
+
+              // サイズ制限（10MBに合わせる）
+              if (selectedFile.size > 10 * 1024 * 1024) {
+                alert('画像は10MB以下にしてください');
+                e.target.value = ''; // 選択リセット
+                return;
               }
+
+              // 画像形式チェック（任意だけどおすすめ）
+              if (!selectedFile.type.startsWith('image/')) {
+                alert('画像ファイルを選択してください');
+                e.target.value = '';
+                return;
+              }
+
+              setFile(selectedFile);
             }}
           />
         </label>
